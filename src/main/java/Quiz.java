@@ -9,6 +9,12 @@ import javax.validation.constraints.Size;
 public class Quiz {
 //* *Quiz*: with a numeric id, a String question, 4 String answers,
 //          and a numeric index representing the correct answer
+
+    public static void main(String[] args)
+    {
+        System.out.println("dinner");
+    }
+
     @Id
     @GeneratedValue
     private Long id;

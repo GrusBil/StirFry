@@ -16,7 +16,8 @@
 
 
     <persistence-unit name="DB" transaction-type="RESOURCE_LOCAL">
-        <!--
+
+    <!--
         RESOURCE_LOCAL means that we handle the "transactions" manually, which is the case when using
         JPA/Hibernate in Java Standard Edition (SE) and not JEE. We will see
         later how to automatically delegate it to the JEE container by using "JTA"
@@ -38,6 +39,20 @@
             <!-- This does show on the console the SQL statements executed by Hibernate -->
             <property name="hibernate.show_sql" value="true"/>
         </properties>
+
     </persistence-unit>
+
+    <persistence-unit name="JTA" transaction-type="JTA">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <properties>
+            <property name="wildfly.jpa.default-unit" value="true"/>
+            <property name="connection.driver_class" value="org.h2.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:h2:./target/db"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.show_sql" value="false"/>
+        </properties>
+    </persistence-unit>
+
 </persistence>
 
